@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom";
-
-const isAuthenticated = true; // شبیه‌سازی وضعیت ورود کاربر
+import { useAuth } from "../hooks/useAuth"; 
 
 function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth(); 
   if (!isAuthenticated) {
     return <Navigate to="/" replace />;
   }
+
   return children;
 }
 
