@@ -6,7 +6,7 @@ const fetchPosts = async () => {
   );
 
   if (!response.ok) {
-    throw new Error("Network error");
+    throw new Error("Network response was not ok");
   }
 
   return response.json();
@@ -23,8 +23,13 @@ function PostsComponent() {
     queryFn: fetchPosts,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading posts</p>;
+  if (isLoading) {
+    return <p>Loading posts...</p>;
+  }
+
+  if (error) {
+    return <p>Error fetching posts</p>;
+  }
 
   return (
     <div>
